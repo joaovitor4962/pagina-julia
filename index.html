@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Amor da Minha Vida ❤️</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('fundo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        .titulo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #fff;
+            text-align: center;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1.5s;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mensagem-principal {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .mensagem-principal p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .botoes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .btn-amor {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+            transition: all 0.3s;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        .btn-amor:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.6);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .btn-amor i {
+            margin-right: 10px;
+        }
+
+        .balao {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 90%;
+            width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            animation: zoomIn 0.5s;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .balao.show {
+            display: block;
+        }
+
+        .balao-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        .balao-overlay.show {
+            display: block;
+        }
+
+        .btn-fechar {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f5576c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-fechar:hover {
+            background: #d63447;
+            transform: rotate(90deg);
+        }
+
+        .balao h3 {
+            color: #f5576c;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .balao p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .titulo {
+                font-size: 2rem;
+            }
+
+            .mensagem-principal {
+                padding: 20px;
+            }
+
+            .mensagem-principal p {
+                font-size: 1rem;
+            }
+
+            .btn-amor {
+                font-size: 1.1rem;
+                padding: 15px 30px;
+            }
+
+            .balao {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="musica" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="hearts" id="hearts"></div>
+
+    <div class="container">
+        <h1 class="titulo">Para o Amor da Minha Vida 💕</h1>
+
+        <div class="mensagem-principal">
+            <p>✨ Você é a pessoa mais incrível que já conheci ✨</p>
+            <p>Cada momento ao seu lado é um presente que guardo com carinho no coração.</p>
+            <p>Você trouxe cor, alegria e significado para minha vida de uma forma que eu nunca imaginei possível.</p>
+            <p>Esta página é só uma pequena demonstração do quanto você é especial para mim. ❤️</p>
+        </div>
+
+        <div class="botoes-container">
+            <button class="btn-amor" onclick="abrirBalao('namoro')">
+                <i class="fas fa-heart"></i> Nosso Namoro
+            </button>
+
+            <button class="btn-amor" onclick="abrirBalao('casamento')">
+                <i class="fas fa-ring"></i> Nosso Casamento
+            </button>
+
+            <button class="btn-amor" onclick="abrirBalao('familia')">
+                <i class="fas fa-home"></i> Nossa Família
+            </button>
+        </div>
+    </div>
+
+    <div class="balao-overlay" id="overlay" onclick="fecharBalao()"></div>
+
+    <div class="balao" id="balao-namoro">
+        <button class="btn-fechar" onclick="fecharBalao()">×</button>
+        <h3>💑 Nosso Namoro</h3>
+        <p>Cada dia ao seu lado é uma aventura que quero viver para sempre. Você me ensinou o verdadeiro signFificado de
+            companheirismo, cumplicidade e amor incondicional. Nosso namoro é a base de tudo que sonhamos construir
+            juntos. Obrigado por escolher compartilhar sua vida comigo e por fazer cada momento ser especial. Te amarei
+            mais do que as palavras podem expressar! 💕</p>
+    </div>
+
+    <div class="balao" id="balao-casamento">
+        <button class="btn-fechar" onclick="fecharBalao()">×</button>
+        <h3>💍 Nosso Casamento</h3>
+        <p>Sonho com o dia em que vou te ver caminhando até mim, vestida de noiva, com aquele sorriso que ilumina meu
+            mundo. Quero passar o resto da minha vida acordando ao seu lado, construindo memórias, superando desafios
+            juntos e celebrando cada vitória. Você é a pessoa com quem quero envelhecer, meu amor eterno e minha melhor
+            amiga. Mal posso esperar para dizer "sim" e começar oficialmente nossa vida como um só! 👰‍♀️🤵</p>
+    </div>
+
+    <div class="balao" id="balao-familia">
+        <button class="btn-fechar" onclick="fecharBalao()">×</button>
+        <h3>👨‍👩‍👧‍👦 Nossa Família</h3>
+        <p>Imagino nossa família cheia de amor, risadas e momentos inesquecíveis. Ver nossos filhos com seus olhos e seu
+            sorriso será a realização do meu maior sonho. Vamos criar um lar cheio de carinho, onde cada um se sinta
+            amado e apoiado. Juntos, vamos ensinar valores, construir tradições e formar memórias que durarão para
+            sempre. Você será a mãe mais incrível e eu prometo ser o melhor pai possível. Nossa família será nosso maior
+            tesouro! 🏡❤️</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Criar corações flutuantes
+        function criarCoracoes() {
+            const container = document.getElementById('hearts');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        // Tocar música ao carregar
+        window.addEventListener('load', function () {
+            const musica = document.getElementById('musica');
+            musica.play().catch(function (error) {
+                // Se autoplay for bloqueado, toca ao primeiro clique
+                document.body.addEventListener('click', function () {
+                    musica.play();
+                }, { once: true });
+            });
+            criarCoracoes();
+        });
+
+        function abrirBalao(tipo) {
+            fecharBalao();
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('balao-' + tipo).classList.add('show');
+        }
+
+        function fecharBalao() {
+            document.getElementById('overlay').classList.remove('show');
+            document.querySelectorAll('.balao').forEach(function (balao) {
+                balao.classList.remove('show');
+            });
+        }
+
+        // Fechar balão com ESC
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                fecharBalao();
+            }
+        });
+    </script>
+</body>
+
+</html>
