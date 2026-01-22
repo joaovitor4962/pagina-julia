@@ -170,7 +170,6 @@
         }
 
         @keyframes pulse {
-
             0%,
             100% {
                 transform: scale(1);
@@ -195,6 +194,8 @@
             border-radius: 20px;
             padding: 40px;
             max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
             width: 500px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             z-index: 1000;
@@ -267,6 +268,244 @@
             text-align: center;
         }
 
+        .calendario-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .calendario-section h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #f5576c;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .calendario-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .calendario-controls select {
+            padding: 10px 20px;
+            border: 2px solid #f5576c;
+            border-radius: 25px;
+            font-size: 1rem;
+            color: #333;
+            background: white;
+            cursor: pointer;
+        }
+
+        .btn-nav {
+            background: #f5576c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-nav:hover {
+            background: #d63447;
+            transform: scale(1.1);
+        }
+
+        .calendario-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 20px;
+        }
+
+        .dia-semana {
+            text-align: center;
+            font-weight: bold;
+            color: #f5576c;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        .dia {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            background: #f8f9fa;
+            font-size: 0.9rem;
+        }
+
+        .dia:hover {
+            background: #e9ecef;
+            transform: scale(1.05);
+        }
+
+        .dia.outro-mes {
+            color: #ccc;
+        }
+
+        .dia.hoje {
+            background: #ffd6e0;
+            font-weight: bold;
+        }
+
+        .dia.com-memoria {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            font-weight: bold;
+        }
+
+        .dia.com-memoria::after {
+            content: '💕';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 0.7rem;
+        }
+
+        .form-memoria {
+            margin-top: 20px;
+        }
+
+        .form-memoria input,
+        .form-memoria textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #f5576c;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .form-memoria textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-memoria button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .form-memoria button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .form-memoria button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .midia-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .midia-preview-item {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .midia-preview-item img,
+        .midia-preview-item video {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .midia-preview-item .btn-remover {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #f5576c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .memoria-conteudo img,
+        .memoria-conteudo video {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .loading-spinner {
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .loading-spinner i {
+            font-size: 3rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #bee5eb;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
             .titulo {
                 font-size: 2rem;
@@ -287,6 +526,33 @@
 
             .balao {
                 padding: 30px 20px;
+                width: 95%;
+            }
+
+            .calendario-section {
+                padding: 20px 10px;
+            }
+
+            .calendario-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .calendario-controls {
+                flex-direction: column;
+            }
+
+            .dia {
+                font-size: 0.8rem;
+            }
+
+            .dia-semana {
+                font-size: 0.7rem;
+                padding: 5px;
+            }
+
+            .midia-preview-item {
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
@@ -298,6 +564,13 @@
     </audio>
 
     <div class="hearts" id="hearts"></div>
+    
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-heart"></i>
+            <p>Carregando...</p>
+        </div>
+    </div>
 
     <div class="container">
         <h1 class="titulo">Para o Amor da Minha Vida 💕</h1>
@@ -322,6 +595,35 @@
                 <i class="fas fa-home"></i> Nossa Família
             </button>
         </div>
+
+        <div class="calendario-section">
+            <h2>📅 Nossas Memórias</h2>
+            
+            <div class="calendario-controls">
+                <button class="btn-nav" onclick="mudarMes(-1)">‹</button>
+                
+                <select id="selectMes" onchange="atualizarCalendario()">
+                    <option value="0">Janeiro</option>
+                    <option value="1">Fevereiro</option>
+                    <option value="2">Março</option>
+                    <option value="3">Abril</option>
+                    <option value="4">Maio</option>
+                    <option value="5">Junho</option>
+                    <option value="6">Julho</option>
+                    <option value="7">Agosto</option>
+                    <option value="8">Setembro</option>
+                    <option value="9">Outubro</option>
+                    <option value="10">Novembro</option>
+                    <option value="11">Dezembro</option>
+                </select>
+
+                <select id="selectAno" onchange="atualizarCalendario()"></select>
+                
+                <button class="btn-nav" onclick="mudarMes(1)">›</button>
+            </div>
+
+            <div class="calendario-grid" id="calendarioGrid"></div>
+        </div>
     </div>
 
     <div class="balao-overlay" id="overlay" onclick="fecharBalao()"></div>
@@ -329,7 +631,7 @@
     <div class="balao" id="balao-namoro">
         <button class="btn-fechar" onclick="fecharBalao()">×</button>
         <h3>💑 Nosso Namoro</h3>
-        <p>Cada dia ao seu lado é uma aventura que quero viver para sempre. Você me ensinou o verdadeiro signFificado de
+        <p>Cada dia ao seu lado é uma aventura que quero viver para sempre. Você me ensinou o verdadeiro significado de
             companheirismo, cumplicidade e amor incondicional. Nosso namoro é a base de tudo que sonhamos construir
             juntos. Obrigado por escolher compartilhar sua vida comigo e por fazer cada momento ser especial. Te amarei
             mais do que as palavras podem expressar! 💕</p>
@@ -354,9 +656,83 @@
             tesouro! 🏡❤️</p>
     </div>
 
+    <div class="balao" id="balao-memoria">
+        <button class="btn-fechar" onclick="fecharBalao()">×</button>
+        <div id="memoria-conteudo"></div>
+    </div>
+
+    <div class="balao" id="balao-form-memoria" style="width: 600px;">
+        <button class="btn-fechar" onclick="fecharBalao()">×</button>
+        <h3 id="form-titulo">💕 Adicionar Memória</h3>
+        <div class="form-memoria">
+            <input type="text" id="memoria-titulo" placeholder="Título da memória">
+            <textarea id="memoria-texto" placeholder="Conte sobre este momento especial..."></textarea>
+            
+            <div class="alert-info">
+                <strong>💡 Dica:</strong> Para melhores resultados, use imagens de até 2MB e vídeos de até 5MB.
+            </div>
+            
+            <label for="memoria-imagens" style="display: block; margin: 10px 0; color: #f5576c; cursor: pointer;">
+                <i class="fas fa-image"></i> Adicionar Imagens
+            </label>
+            <input type="file" id="memoria-imagens" accept="image/*" multiple style="display: none;" onchange="previewMidias('imagem')">
+            
+            <label for="memoria-videos" style="display: block; margin: 10px 0; color: #f5576c; cursor: pointer;">
+                <i class="fas fa-video"></i> Adicionar Vídeos
+            </label>
+            <input type="file" id="memoria-videos" accept="video/*" multiple style="display: none;" onchange="previewMidias('video')">
+            
+            <div class="midia-preview" id="midia-preview"></div>
+            
+            <button onclick="salvarMemoria()" id="btn-salvar">
+                <i class="fas fa-save"></i> Salvar Memória
+            </button>
+            
+            <button onclick="excluirMemoria()" style="background: #dc3545; margin-left: 10px;" id="btn-excluir">
+                <i class="fas fa-trash"></i> Excluir
+            </button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, doc, setDoc, getDoc, deleteDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfyb-3LhikR404rTrshJEM1T6KlgF5718",
+            authDomain: "base-julia.firebaseapp.com",
+            projectId: "base-julia",
+            storageBucket: "base-julia.firebasestorage.app",
+            messagingSenderId: "250135549164",
+            appId: "1:250135549164:web:3628a3c49d8b2a691801c9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.firebaseDB = db;
+        window.firebaseDoc = doc;
+        window.firebaseSetDoc = setDoc;
+        window.firebaseGetDoc = getDoc;
+        window.firebaseDeleteDoc = deleteDoc;
+        window.firebaseGetDocs = getDocs;
+        window.firebaseCollection = collection;
+
+        console.log('Firebase inicializado com sucesso! 🔥');
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Criar corações flutuantes
+        let mesAtual = new Date().getMonth();
+        let anoAtual = new Date().getFullYear();
+        let dataSelecionada = null;
+        let midiasSelecionadas = [];
+
+        function mostrarLoading(show) {
+            document.getElementById('loadingOverlay').classList.toggle('show', show);
+        }
+
         function criarCoracoes() {
             const container = document.getElementById('hearts');
             for (let i = 0; i < 20; i++) {
@@ -370,16 +746,15 @@
             }
         }
 
-        // Tocar música ao carregar
         window.addEventListener('load', function () {
             const musica = document.getElementById('musica');
             musica.play().catch(function (error) {
-                // Se autoplay for bloqueado, toca ao primeiro clique
                 document.body.addEventListener('click', function () {
                     musica.play();
                 }, { once: true });
             });
             criarCoracoes();
+            inicializarCalendario();
         });
 
         function abrirBalao(tipo) {
@@ -395,12 +770,336 @@
             });
         }
 
-        // Fechar balão com ESC
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 fecharBalao();
             }
         });
+
+        function inicializarCalendario() {
+            const selectAno = document.getElementById('selectAno');
+            for (let ano = 2025; ano <= 2075; ano++) {
+                const option = document.createElement('option');
+                option.value = ano;
+                option.textContent = ano;
+                if (ano === anoAtual) option.selected = true;
+                selectAno.appendChild(option);
+            }
+            
+            document.getElementById('selectMes').value = mesAtual;
+            atualizarCalendario();
+        }
+
+        function mudarMes(direcao) {
+            mesAtual += direcao;
+            if (mesAtual > 11) {
+                mesAtual = 0;
+                anoAtual++;
+            } else if (mesAtual < 0) {
+                mesAtual = 11;
+                anoAtual--;
+            }
+            
+            document.getElementById('selectMes').value = mesAtual;
+            document.getElementById('selectAno').value = anoAtual;
+            atualizarCalendario();
+        }
+
+        async function atualizarCalendario() {
+            mesAtual = parseInt(document.getElementById('selectMes').value);
+            anoAtual = parseInt(document.getElementById('selectAno').value);
+            
+            const grid = document.getElementById('calendarioGrid');
+            grid.innerHTML = '';
+            
+            const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+            diasSemana.forEach(dia => {
+                const el = document.createElement('div');
+                el.className = 'dia-semana';
+                el.textContent = dia;
+                grid.appendChild(el);
+            });
+            
+            const primeiroDia = new Date(anoAtual, mesAtual, 1).getDay();
+            const ultimoDia = new Date(anoAtual, mesAtual + 1, 0).getDate();
+            const ultimoDiaMesAnterior = new Date(anoAtual, mesAtual, 0).getDate();
+            
+            const hoje = new Date();
+            const memorias = await carregarTodasMemorias();
+            
+            for (let i = primeiroDia - 1; i >= 0; i--) {
+                const dia = document.createElement('div');
+                dia.className = 'dia outro-mes';
+                dia.textContent = ultimoDiaMesAnterior - i;
+                grid.appendChild(dia);
+            }
+            
+            for (let dia = 1; dia <= ultimoDia; dia++) {
+                const el = document.createElement('div');
+                el.className = 'dia';
+                el.textContent = dia;
+                
+                if (dia === hoje.getDate() && mesAtual === hoje.getMonth() && anoAtual === hoje.getFullYear()) {
+                    el.classList.add('hoje');
+                }
+                
+                const dataKey = `${anoAtual}-${String(mesAtual + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
+                if (memorias[dataKey]) {
+                    el.classList.add('com-memoria');
+                }
+                
+                el.onclick = () => selecionarDia(dia, dataKey);
+                grid.appendChild(el);
+            }
+            
+            const diasRestantes = 42 - grid.children.length;
+            for (let i = 1; i <= diasRestantes; i++) {
+                const dia = document.createElement('div');
+                dia.className = 'dia outro-mes';
+                dia.textContent = i;
+                grid.appendChild(dia);
+            }
+        }
+
+        async function selecionarDia(dia, dataKey) {
+            dataSelecionada = dataKey;
+            const memoria = await carregarMemoria(dataKey);
+            
+            if (memoria) {
+                mostrarMemoria(memoria, dataKey);
+            } else {
+                abrirFormMemoria(dataKey);
+            }
+        }
+
+        function abrirFormMemoria(dataKey) {
+            midiasSelecionadas = [];
+            document.getElementById('midia-preview').innerHTML = '';
+            document.getElementById('memoria-titulo').value = '';
+            document.getElementById('memoria-texto').value = '';
+            document.getElementById('form-titulo').textContent = `💕 Adicionar Memória - ${dataKey}`;
+            document.getElementById('btn-excluir').style.display = 'none';
+            
+            fecharBalao();
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('balao-form-memoria').classList.add('show');
+        }
+
+        async function mostrarMemoria(memoria, dataKey) {
+            const conteudo = document.getElementById('memoria-conteudo');
+            conteudo.innerHTML = `
+                <h3>${memoria.titulo}</h3>
+                <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">${dataKey}</p>
+                <div class="memoria-conteudo">
+                    <p style="text-align: left; white-space: pre-wrap;">${memoria.texto}</p>
+                    ${memoria.midias ? memoria.midias.map(midia => {
+                        if (midia.tipo === 'imagem') {
+                            return `<img src="${midia.data}" alt="Memória">`;
+                        } else {
+                            return `<video controls><source src="${midia.data}"></video>`;
+                        }
+                    }).join('') : ''}
+                </div>
+                <button onclick="editarMemoria('${dataKey}')" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none; border-radius: 25px; padding: 12px 30px; color: white; font-size: 1.1rem; cursor: pointer; margin-top: 20px;">
+                    <i class="fas fa-edit"></i> Editar
+                </button>
+            `;
+            
+            fecharBalao();
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('balao-memoria').classList.add('show');
+        }
+
+        async function editarMemoria(dataKey) {
+            const memoria = await carregarMemoria(dataKey);
+            
+            document.getElementById('memoria-titulo').value = memoria.titulo;
+            document.getElementById('memoria-texto').value = memoria.texto;
+            document.getElementById('form-titulo').textContent = `💕 Editar Memória - ${dataKey}`;
+            document.getElementById('btn-excluir').style.display = 'inline-block';
+            
+            midiasSelecionadas = memoria.midias || [];
+            const preview = document.getElementById('midia-preview');
+            preview.innerHTML = '';
+            midiasSelecionadas.forEach((midia, index) => {
+                const div = document.createElement('div');
+                div.className = 'midia-preview-item';
+                if (midia.tipo === 'imagem') {
+                    div.innerHTML = `
+                        <img src="${midia.data}">
+                        <button class="btn-remover" onclick="removerMidia(${index})">×</button>
+                    `;
+                } else {
+                    div.innerHTML = `
+                        <video src="${midia.data}"></video>
+                        <button class="btn-remover" onclick="removerMidia(${index})">×</button>
+                    `;
+                }
+                preview.appendChild(div);
+            });
+            
+            fecharBalao();
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('balao-form-memoria').classList.add('show');
+        }
+
+        function removerMidia(index) {
+            midiasSelecionadas.splice(index, 1);
+            const preview = document.getElementById('midia-preview');
+            preview.innerHTML = '';
+            midiasSelecionadas.forEach((midia, idx) => {
+                const div = document.createElement('div');
+                div.className = 'midia-preview-item';
+                if (midia.tipo === 'imagem') {
+                    div.innerHTML = `
+                        <img src="${midia.data}">
+                        <button class="btn-remover" onclick="removerMidia(${idx})">×</button>
+                    `;
+                } else {
+                    div.innerHTML = `
+                        <video src="${midia.data}"></video>
+                        <button class="btn-remover" onclick="removerMidia(${idx})">×</button>
+                    `;
+                }
+                preview.appendChild(div);
+            });
+        }
+
+        function previewMidias(tipo) {
+            const input = tipo === 'imagem' ? document.getElementById('memoria-imagens') : document.getElementById('memoria-videos');
+            const files = input.files;
+            
+            Array.from(files).forEach(file => {
+                const maxSize = tipo === 'imagem' ? 2 * 1024 * 1024 : 5 * 1024 * 1024;
+                
+                if (file.size > maxSize) {
+                    alert(`Arquivo muito grande! ${tipo === 'imagem' ? 'Imagens' : 'Vídeos'} devem ter no máximo ${tipo === 'imagem' ? '2MB' : '5MB'}.`);
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newMidia = {
+                        tipo: tipo,
+                        data: e.target.result
+                    };
+                    midiasSelecionadas.push(newMidia);
+                    
+                    const preview = document.getElementById('midia-preview');
+                    const div = document.createElement('div');
+                    div.className = 'midia-preview-item';
+                    const currentIndex = midiasSelecionadas.length - 1;
+                    
+                    if (tipo === 'imagem') {
+                        div.innerHTML = `
+                            <img src="${e.target.result}">
+                            <button class="btn-remover" onclick="removerMidia(${currentIndex})">×</button>
+                        `;
+                    } else {
+                        div.innerHTML = `
+                            <video src="${e.target.result}"></video>
+                            <button class="btn-remover" onclick="removerMidia(${currentIndex})">×</button>
+                        `;
+                    }
+                    preview.appendChild(div);
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            input.value = '';
+        }
+
+        async function salvarMemoria() {
+            const titulo = document.getElementById('memoria-titulo').value;
+            const texto = document.getElementById('memoria-texto').value;
+            
+            if (!titulo || !texto) {
+                alert('Por favor, preencha o título e o texto da memória!');
+                return;
+            }
+            
+            const btnSalvar = document.getElementById('btn-salvar');
+            btnSalvar.disabled = true;
+            btnSalvar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
+            mostrarLoading(true);
+            
+            const memoria = {
+                titulo: titulo,
+                texto: texto,
+                midias: midiasSelecionadas,
+                data: new Date().toISOString()
+            };
+            
+            try {
+                const docRef = window.firebaseDoc(window.firebaseDB, 'memorias', dataSelecionada);
+                await window.firebaseSetDoc(docRef, memoria);
+                
+                mostrarLoading(false);
+                alert('Memória salva com sucesso! 💕');
+                fecharBalao();
+                atualizarCalendario();
+            } catch (error) {
+                mostrarLoading(false);
+                console.error('Erro ao salvar memória:', error);
+                alert('Erro ao salvar memória. Tente novamente.');
+            } finally {
+                btnSalvar.disabled = false;
+                btnSalvar.innerHTML = '<i class="fas fa-save"></i> Salvar Memória';
+            }
+        }
+
+        async function excluirMemoria() {
+            if (!confirm('Tem certeza que deseja excluir esta memória?')) {
+                return;
+            }
+            
+            mostrarLoading(true);
+            
+            try {
+                const docRef = window.firebaseDoc(window.firebaseDB, 'memorias', dataSelecionada);
+                await window.firebaseDeleteDoc(docRef);
+                
+                mostrarLoading(false);
+                alert('Memória excluída com sucesso!');
+                fecharBalao();
+                atualizarCalendario();
+            } catch (error) {
+                mostrarLoading(false);
+                console.error('Erro ao excluir memória:', error);
+                alert('Erro ao excluir memória. Tente novamente.');
+            }
+        }
+
+        async function carregarMemoria(dataKey) {
+            try {
+                const docRef = window.firebaseDoc(window.firebaseDB, 'memorias', dataKey);
+                const docSnap = await window.firebaseGetDoc(docRef);
+                
+                if (docSnap.exists()) {
+                    return docSnap.data();
+                }
+                return null;
+            } catch (error) {
+                console.error('Erro ao carregar memória:', error);
+                return null;
+            }
+        }
+
+        async function carregarTodasMemorias() {
+            try {
+                const querySnapshot = await window.firebaseGetDocs(window.firebaseCollection(window.firebaseDB, 'memorias'));
+                const memorias = {};
+                
+                querySnapshot.forEach((doc) => {
+                    memorias[doc.id] = doc.data();
+                });
+                
+                return memorias;
+            } catch (error) {
+                console.error('Erro ao carregar memórias:', error);
+                return {};
+            }
+        }
     </script>
 </body>
 
